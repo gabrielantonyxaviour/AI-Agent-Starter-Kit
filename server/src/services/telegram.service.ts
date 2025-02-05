@@ -14,7 +14,8 @@ import { parse as jsoncParse } from "jsonc-parser";
 import path, { resolve } from "path";
 import { keccak256, getBytes, toUtf8Bytes } from "ethers";
 import { TwitterService } from "./twitter.service.js";
-import { NgrokService } from "./ngrok.service.js";
+// import { NgrokService } from "./ngrok.service.js";
+import { LocalTunnelService } from "./localtunnel.service.js";
 
 // hack to avoid 400 errors sending params back to telegram. not even close to perfect
 const htmlEscape = (_key: AnyType, val: AnyType) => {
@@ -35,7 +36,8 @@ export class TelegramService extends BaseService {
   private bot: Bot;
   private webhookUrl: string;
   private elizaService: ElizaService;
-  private nGrokService: NgrokService;
+  // private LocalTunnelService: LocalTunnelService;
+  private localTunnelService: LocalTunnelService;
   private twitterService?: TwitterService;
 
   private constructor(webhookUrl?: string) {
@@ -98,7 +100,7 @@ export class TelegramService extends BaseService {
       });
       await this.elizaService.start();
       // required when starting server for telegram webooks
-      this.nGrokService = await NgrokService.getInstance();
+      this.localTunnelService = LocalTunnelService.getInstance();
       try {
         // try starting the twitter service
         this.twitterService = await TwitterService.getInstance();
@@ -165,7 +167,7 @@ You can view the token page below (it takes a few minutes to be visible)`,
           if (this.twitterService) {
             const twitterBotInfo = this.twitterService.me;
             const twitterClient = this.twitterService.getScraper();
-            const ngrokURL = this.nGrokService.getUrl();
+            const ngrokURL = this.localTunnelService.getUrl();
             await ctx.reply(
               `🐦 Posting a tweet about the new token...\n\n` +
                 `Twitter account details:\n<pre lang="json"><code>${JSON.stringify(
