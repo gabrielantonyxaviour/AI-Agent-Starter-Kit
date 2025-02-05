@@ -24,6 +24,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@types/localtunnel": "^2.0.4",
     "@ngrok/ngrok": "^1.4.1",
     "auto-changelog": "^2.4.0",
     "concurrently": "^8.2.2",
@@ -37,5 +38,8 @@
   },
   "author": "Abridged, Inc.",
   "license": "MIT",
-  "packageManager": "pnpm@9.14.1"
+  "packageManager": "pnpm@9.14.1",
+  "dependencies": {
+    "localtunnel": "^2.0.2"
+  }
 }

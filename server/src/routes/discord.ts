@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import axios from "axios";
 import crypto from "crypto";
 // import { NgrokService } from "../services/ngrok.service.js";
-import { LocalTunnelService } from "src/services/localtunnel.service.js";
+import { LocalTunnelService } from "../services/localtunnel.service.js";
 const router = Router();
 const states = new Set<string>();
 

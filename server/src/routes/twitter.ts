@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import crypto from "crypto";
 // import { NgrokService } from "../services/ngrok.service.js";
-import { LocalTunnelService } from "src/services/localtunnel.service.js";
+import { LocalTunnelService } from "../services/localtunnel.service.js";
 import { CacheService } from "../services/cache.service.js";
 import { getCardHTML, getCollablandApiUrl } from "../utils.js";
 import {
